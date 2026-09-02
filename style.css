@@ -1,0 +1,350 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef1f5;
+    color: #111827;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 20px 7%;
+    text-align: center;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.hero {
+    background: white;
+    text-align: center;
+    padding: 70px 20px 100px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #64748b;
+    font-size: 18px;
+}
+
+.search-box {
+    max-width: 1050px;
+    margin: -50px auto 60px;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr auto;
+    gap: 12px;
+
+    position: relative;
+    z-index: 5;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.search-box select {
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+}
+
+.search-box select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.search-box button {
+    border: none;
+    border-radius: 10px;
+    padding: 14px 22px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background: #1d4ed8;
+}
+
+#results {
+    max-width: 1050px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+#results > h2 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.result-count {
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+/* HORIZONTAL DEAL CARD */
+
+.deal-card {
+    width: 100%;
+    background: white;
+
+    margin-top: 18px;
+    padding: 20px;
+
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 22px;
+    align-items: center;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition: 0.2s ease;
+}
+
+.deal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGE */
+
+.shoe-image {
+    width: 200px;
+    height: 155px;
+
+    background: #f1f5f9;
+    border-radius: 14px;
+
+    overflow: hidden;
+}
+
+.shoe-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* INFORMATION */
+
+.deal-info {
+    min-width: 0;
+}
+
+.rank {
+    display: inline-block;
+
+    background: #dbeafe;
+    color: #2563eb;
+
+    padding: 6px 9px;
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    margin-bottom: 8px;
+}
+
+.deal-info h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.store {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.details {
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* PRICE */
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 14px;
+
+    flex-wrap: wrap;
+}
+
+.sale-price {
+    font-size: 27px;
+    font-weight: 900;
+}
+
+.original-price {
+    color: #94a3b8;
+    text-decoration: line-through;
+}
+
+.discount {
+    background: #dcfce7;
+    color: #15803d;
+
+    padding: 6px 9px;
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* BUTTON */
+
+.deal-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deal-button {
+    display: inline-block;
+
+    background: #111827;
+    color: white;
+
+    padding: 13px 18px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.deal-button:hover {
+    background: #2563eb;
+}
+
+/* LOADING */
+
+.loading {
+    background: white;
+    padding: 35px;
+
+    border-radius: 16px;
+    text-align: center;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* NO RESULTS */
+
+.no-results {
+    background: white;
+    padding: 35px;
+
+    border-radius: 16px;
+    text-align: center;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.no-results p {
+    color: #64748b;
+    margin-top: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #111827;
+    color: #94a3b8;
+
+    text-align: center;
+    padding: 30px 20px;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .search-box {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .search-box button {
+        grid-column: span 2;
+    }
+
+    .deal-card {
+        grid-template-columns: 160px 1fr;
+    }
+
+    .shoe-image {
+        width: 160px;
+        height: 140px;
+    }
+
+    .deal-action {
+        grid-column: span 2;
+        justify-content: flex-end;
+    }
+}
+
+/* PHONE */
+
+@media (max-width: 600px) {
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .search-box {
+        grid-template-columns: 1fr;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .search-box button {
+        grid-column: auto;
+    }
+
+    .deal-card {
+        grid-template-columns: 1fr;
+    }
+
+    .shoe-image {
+        width: 100%;
+        height: 210px;
+    }
+
+    .deal-action {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .deal-button {
+        width: 100%;
+        text-align: center;
+    }
+}

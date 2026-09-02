@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShoeFinder</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">
+            👟 ShoeFinder
+        </div>
+
+        <div class="tagline">
+            Find the best shoe deals
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <h1>
+                Find Your Next Pair
+            </h1>
+
+            <p>
+                Compare shoe deals based on your size, gender and location.
+            </p>
+
+
+            <!-- SEARCH BOX -->
+            <div class="search-box">
+
+                <!-- SHOE -->
+                <label for="shoe">
+                    Shoe
+                </label>
+
+                <select id="shoe">
+                    <option value="">
+                        Select a shoe
+                    </option>
+
+                <option value="Nike Pegasus 41">Nike Pegasus 41</option>
+                <option value="Nike Vomero Plus">Nike Vomero Plus</option>
+                <option value="Nike Streakfly 2">Nike Streakfly 2</option>
+                <option value="Nike Vaporfly 4">Nike Vaporfly 4</option>
+                <option value="Adidas Evo SL">Adidas Evo SL</option>
+                <option value="Adidas Adizero Boston 13">Adidas Adizero Boston 13</option>
+                <option value="ASICS Novablast 5">ASICS Novablast 5</option>
+                <option value="ASICS Magic Speed 5">ASICS Magic Speed 5</option>
+                <option value="ASICS Gel Nimbus 27">ASICS Gel Nimbus 27</option>
+                <option value="Hoka Clifton 10">Hoka Clifton 10</option>
+                <option value="Hoka Mach 6">Hoka Mach 6</option>
+                <option value="Saucony Endorphin Speed 4">Saucony Endorphin Speed 4</option>
+                <option value="New Balance Rebel v5">New Balance Rebel v5</option>
+
+
+
+                </select>
+
+
+                <!-- SIZE -->
+                <label for="size">
+                    UK Size
+                </label>
+
+                <select id="size">
+
+                    <option value="">
+                        Select size
+                    </option>
+
+                    <option value="6">
+                        UK 6
+                    </option>
+
+                    <option value="6.5">
+                        UK 6.5
+                    </option>
+
+                    <option value="7">
+                        UK 7
+                    </option>
+
+                    <option value="7.5">
+                        UK 7.5
+                    </option>
+
+                    <option value="8">
+                        UK 8
+                    </option>
+
+                    <option value="8.5">
+                        UK 8.5
+                    </option>
+
+                    <option value="9">
+                        UK 9
+                    </option>
+
+                    <option value="9.5">
+                        UK 9.5
+                    </option>
+
+                    <option value="10">
+                        UK 10
+                    </option>
+
+                </select>
+
+
+                <!-- GENDER -->
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select id="gender">
+
+                    <option value="">
+                        Select gender
+                    </option>
+
+                    <option value="Men">
+                        Men
+                    </option>
+
+                    <option value="Women">
+                        Women
+                    </option>
+
+                    <option value="Unisex">
+                        Unisex
+                    </option>
+
+                </select>
+
+
+                <!-- LOCATION -->
+                <label for="location">
+                    Location
+                </label>
+
+                <select id="location">
+
+                    <option value="">
+                        Select location
+                    </option>
+
+                    <option value="Malaysia">
+                        Malaysia
+                    </option>
+
+                    <option value="Singapore">
+                        Singapore
+                    </option>
+
+                    <option value="UK">
+                        United Kingdom
+                    </option>
+
+                </select>
+
+
+                <!-- SEARCH BUTTON -->
+                <button onclick="findDeals()">
+                    🔎 Find Best Deals
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+        <section class="results-section">
+
+            <h2>
+                Best Deals
+            </h2>
+
+
+            <div id="results">
+
+                <p class="empty-message">
+                    Select your shoe preferences and click
+                    "Find Best Deals".
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 ShoeFinder • Compare before you buy
+        </p>
+
+    </footer>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>
