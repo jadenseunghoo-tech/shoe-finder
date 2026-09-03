@@ -1,224 +1,721 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ShoeFinder</title>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
+            background: #f7f7f8;
+            color: #151515;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #e7e7ea;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 17px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.04em;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #151515;
+            color: white;
+        }
+
+        .nav-label {
+            font-size: 13px;
+            color: #777780;
+        }
+
+        .hero {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 72px 24px 45px;
+        }
+
+        .hero-eyebrow {
+            margin: 0 0 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: #8a8a92;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            margin: 0;
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 0.98;
+            letter-spacing: -0.065em;
+        }
+
+        .hero-subtitle {
+            max-width: 620px;
+            margin: 22px 0 0;
+            color: #6f6f77;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .search-section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .search-panel {
+            padding: 26px;
+            background: white;
+            border: 1px solid #e4e4e8;
+            border-radius: 24px;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.2fr;
+            gap: 14px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #777780;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            min-height: 52px;
+            padding: 0 15px;
+            border: 1px solid #dedee3;
+            border-radius: 13px;
+            background: #fbfbfc;
+            color: #151515;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: #111;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .field input::placeholder {
+            color: #9b9ba2;
+        }
+
+        .search-footer {
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .search-note {
+            color: #85858d;
+            font-size: 13px;
+        }
+
+        .search-button {
+            min-height: 52px;
+            padding: 0 24px;
+            border: 0;
+            border-radius: 13px;
+            background: #151515;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .search-button:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        .results-section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 54px 24px 80px;
+        }
+
+        .results-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .results-eyebrow {
+            margin: 0 0 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: #8b8b93;
+        }
+
+        .results-header h2 {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: -0.045em;
+        }
+
+        .results-subtitle {
+            margin: 7px 0 0;
+            color: #777780;
+            font-size: 14px;
+        }
+
+        .results-count {
+            padding: 9px 13px;
+            border-radius: 999px;
+            background: #ededf0;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .deal-card {
+            display: grid;
+            grid-template-columns: 170px 1fr auto;
+            gap: 22px;
+            align-items: center;
+            margin-bottom: 14px;
+            padding: 18px;
+            background: white;
+            border: 1px solid #e6e6ea;
+            border-radius: 19px;
+            transition: 0.2s ease;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.07);
+        }
+
+        .deal-image-container {
+            width: 170px;
+            height: 135px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f5f5f6;
+            border-radius: 13px;
+        }
+
+        .deal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .deal-content {
+            min-width: 0;
+        }
+
+        .deal-topline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .deal-rank {
+            color: #888891;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #edf8f0;
+            color: #25723a;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .deal-title {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.35;
+        }
+
+        .deal-store {
+            margin: 7px 0 12px;
+            color: #777780;
+            font-size: 13px;
+        }
+
+        .deal-price {
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        .deal-action {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .deal-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 11px;
+            background: #151515;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .loading-screen {
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .loading-screen h2 {
+            margin: 18px 0 6px;
+            font-size: 25px;
+        }
+
+        .loading-screen p {
+            margin: 0;
+            color: #7b7b83;
+            font-size: 14px;
+        }
+
+        .loading-spinner {
+            width: 54px;
+            height: 54px;
+            border: 4px solid #e8e8eb;
+            border-top-color: #151515;
+            border-radius: 50%;
+            animation: shoeSpin 0.8s linear infinite;
+        }
+
+        @keyframes shoeSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-counter {
+            margin-top: 20px;
+            display: inline-flex;
+            gap: 5px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: #f0f0f2;
+            font-size: 13px;
+        }
+
+        .loading-counter strong {
+            font-size: 21px;
+        }
+
+        .loading-pulse {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 18px;
+        }
+
+        .loading-pulse span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #8a8a90;
+            animation: pulse 1.2s infinite ease-in-out;
+        }
+
+        .loading-pulse span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .loading-pulse span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes pulse {
+            0%, 80%, 100% {
+                transform: scale(0.7);
+                opacity: 0.4;
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .no-results {
+            padding: 70px 25px;
+            text-align: center;
+        }
+
+        .no-results-icon {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #eeeeF0;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .no-results h2 {
+            margin: 0 0 8px;
+            font-size: 25px;
+        }
+
+        .no-results p {
+            max-width: 520px;
+            margin: 5px auto;
+            color: #777780;
+            line-height: 1.5;
+        }
+
+        .retry-button {
+            margin-top: 18px;
+            padding: 11px 17px;
+            border: 0;
+            border-radius: 10px;
+            background: #151515;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        footer {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px;
+            border-top: 1px solid #e5e5e8;
+            color: #85858d;
+            font-size: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .search-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .nav {
+                padding: 16px 18px;
+            }
+
+            .nav-label {
+                display: none;
+            }
+
+            .hero {
+                padding: 55px 18px 34px;
+            }
+
+            .search-section,
+            .results-section {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .search-panel {
+                padding: 18px;
+            }
+
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .deal-card {
+                grid-template-columns: 105px 1fr;
+                gap: 14px;
+            }
+
+            .deal-image-container {
+                width: 105px;
+                height: 100px;
+            }
+
+            .deal-action {
+                grid-column: 1 / -1;
+            }
+
+            .deal-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header>
-
+<header>
+    <nav class="nav">
         <div class="logo">
-            👟 ShoeFinder
+            <div class="logo-mark">S</div>
+            <span>ShoeFinder</span>
         </div>
 
-        <div class="tagline">
-            Find the best shoe deals
+        <div class="nav-label">
+            Compare. Verify. Save.
         </div>
+    </nav>
+</header>
 
-    </header>
+<main>
 
+    <section class="hero">
+        <p class="hero-eyebrow">
+            Smarter shoe shopping
+        </p>
 
-    <!-- MAIN CONTENT -->
-    <main>
+        <h1>
+            Find the right shoe.
+            Find the right price.
+        </h1>
 
-        <!-- HERO -->
-        <section class="hero">
+        <p class="hero-subtitle">
+            Search for a shoe and compare deals across
+            online stores for your selected US size.
+        </p>
+    </section>
 
-            <h1>
-                Find Your Next Pair
-            </h1>
+    <section class="search-section">
 
-            <p>
-                Compare shoe deals based on your size, gender and location.
-            </p>
+        <div class="search-panel">
 
+            <div class="search-grid">
 
-            <!-- SEARCH BOX -->
-            <div class="search-box">
+                <div class="field">
+                    <label for="shoe">
+                        SHOE
+                    </label>
 
-                <!-- SHOE -->
-                <label for="shoe">
-                    Shoe
-                </label>
+                    <input
+                        type="text"
+                        id="shoe"
+                        placeholder="e.g. Nike Pegasus 41"
+                        autocomplete="off"
+                    >
+                </div>
 
-                <select id="shoe">
-                    <option value="">
-                        Select a shoe
-                    </option>
+                <div class="field">
+                    <label for="size">
+                        US SIZE
+                    </label>
 
-                <option value="Nike Pegasus 41">Nike Pegasus 41</option>
-                <option value="Nike Vomero Plus">Nike Vomero Plus</option>
-                <option value="Nike Streakfly 2">Nike Streakfly 2</option>
-                <option value="Nike Vaporfly 4">Nike Vaporfly 4</option>
-                <option value="Adidas Evo SL">Adidas Evo SL</option>
-                <option value="Adidas Adizero Boston 13">Adidas Adizero Boston 13</option>
-                <option value="ASICS Novablast 5">ASICS Novablast 5</option>
-                <option value="ASICS Magic Speed 5">ASICS Magic Speed 5</option>
-                <option value="ASICS Gel Nimbus 27">ASICS Gel Nimbus 27</option>
-                <option value="Hoka Clifton 10">Hoka Clifton 10</option>
-                <option value="Hoka Mach 6">Hoka Mach 6</option>
-                <option value="Saucony Endorphin Speed 4">Saucony Endorphin Speed 4</option>
-                <option value="New Balance Rebel v5">New Balance Rebel v5</option>
+                    <select id="size">
 
+                        <option value="">
+                            Select size
+                        </option>
 
+                        <option value="5">US 5</option>
+                        <option value="5.5">US 5.5</option>
+                        <option value="6">US 6</option>
+                        <option value="6.5">US 6.5</option>
+                        <option value="7">US 7</option>
+                        <option value="7.5">US 7.5</option>
+                        <option value="8">US 8</option>
+                        <option value="8.5">US 8.5</option>
+                        <option value="9">US 9</option>
+                        <option value="9.5">US 9.5</option>
+                        <option value="10">US 10</option>
+                        <option value="10.5">US 10.5</option>
+                        <option value="11">US 11</option>
+                        <option value="11.5">US 11.5</option>
+                        <option value="12">US 12</option>
+                        <option value="12.5">US 12.5</option>
+                        <option value="13">US 13</option>
+                        <option value="14">US 14</option>
 
-                </select>
+                    </select>
+                </div>
 
+                <div class="field">
+                    <label for="gender">
+                        CATEGORY
+                    </label>
 
-                <!-- SIZE -->
-                <label for="size">
-                    UK Size
-                </label>
+                    <select id="gender">
 
-                <select id="size">
+                        <option value="Men">
+                            Men's
+                        </option>
 
-                    <option value="">
-                        Select size
-                    </option>
+                        <option value="Women">
+                            Women's
+                        </option>
 
-                    <option value="6">
-                        UK 6
-                    </option>
+                        <option value="Unisex">
+                            Unisex
+                        </option>
 
-                    <option value="6.5">
-                        UK 6.5
-                    </option>
+                    </select>
+                </div>
 
-                    <option value="7">
-                        UK 7
-                    </option>
+                <div class="field">
+                    <label for="location">
+                        LOCATION
+                    </label>
 
-                    <option value="7.5">
-                        UK 7.5
-                    </option>
+                    <select id="location">
 
-                    <option value="8">
-                        UK 8
-                    </option>
+                        <option value="Malaysia">🇲🇾 Malaysia</option>
+                        <option value="Singapore">🇸🇬 Singapore</option>
+                        <option value="UK">🇬🇧 United Kingdom</option>
+                        <option value="US">🇺🇸 United States</option>
+                        <option value="Australia">🇦🇺 Australia</option>
+                        <option value="Japan">🇯🇵 Japan</option>
+                        <option value="South Korea">🇰🇷 South Korea</option>
+                        <option value="Hong Kong">🇭🇰 Hong Kong</option>
+                        <option value="Canada">🇨🇦 Canada</option>
+                        <option value="Germany">🇩🇪 Germany</option>
+                        <option value="France">🇫🇷 France</option>
 
-                    <option value="8.5">
-                        UK 8.5
-                    </option>
+                    </select>
+                </div>
 
-                    <option value="9">
-                        UK 9
-                    </option>
+            </div>
 
-                    <option value="9.5">
-                        UK 9.5
-                    </option>
+            <div class="search-footer">
 
-                    <option value="10">
-                        UK 10
-                    </option>
+                <div class="search-note">
+                    ShoeFinder checks the model before showing deals.
+                </div>
 
-                </select>
-
-
-                <!-- GENDER -->
-                <label for="gender">
-                    Gender
-                </label>
-
-                <select id="gender">
-
-                    <option value="">
-                        Select gender
-                    </option>
-
-                    <option value="Men">
-                        Men
-                    </option>
-
-                    <option value="Women">
-                        Women
-                    </option>
-
-                    <option value="Unisex">
-                        Unisex
-                    </option>
-
-                </select>
-
-
-                <!-- LOCATION -->
-                <label for="location">
-                    Location
-                </label>
-
-                <select id="location">
-
-                    <option value="">
-                        Select location
-                    </option>
-
-                    <option value="Malaysia">
-                        Malaysia
-                    </option>
-
-                    <option value="Singapore">
-                        Singapore
-                    </option>
-
-                    <option value="UK">
-                        United Kingdom
-                    </option>
-
-                </select>
-
-
-                <!-- SEARCH BUTTON -->
-                <button onclick="findDeals()">
-                    🔎 Find Best Deals
+                <button
+                    class="search-button"
+                    onclick="findDeals()"
+                >
+                    Find best deals →
                 </button>
 
             </div>
 
-        </section>
+        </div>
 
+    </section>
 
-        <!-- RESULTS -->
-        <section class="results-section">
+    <section class="results-section">
 
-            <h2>
-                Best Deals
-            </h2>
+        <div id="results">
 
+            <div class="no-results">
 
-            <div id="results">
+                <div class="no-results-icon">
+                    ✦
+                </div>
 
-                <p class="empty-message">
-                    Select your shoe preferences and click
-                    "Find Best Deals".
+                <h2>
+                    Ready when you are
+                </h2>
+
+                <p>
+                    Search for a shoe above to compare deals.
                 </p>
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
+    </section>
 
+</main>
 
-    <!-- FOOTER -->
-    <footer>
+<footer>
+    ShoeFinder compares publicly available shopping data.
+    Always confirm the final size, availability and price
+    with the retailer before purchasing.
+   
+    <p>© 2026 ShoeFinder. All rights reserved.</p>
+    <p>
+        Contact:
+        <a href="mailto:shoefinderreal@gmail.com">
+            shoefinderreal@gmail.com
+        </a>
+    </p>
 
-        <p>
-            © 2026 ShoeFinder • Compare before you buy
-        </p>
-
-    </footer>
-
-</body>
+</footer>
 
 <script src="script.js"></script>
 
+</body>
 </html>
